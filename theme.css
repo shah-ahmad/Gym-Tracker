@@ -99,3 +99,62 @@ body .anatomy-panel{background:radial-gradient(ellipse at center,#fff,#e8ebf3);b
 body .exercise-notes{background:repeating-linear-gradient(0deg,transparent 0 27px,#565baa0a 27px 28px),linear-gradient(110deg,var(--canvas),#e9ecf5);box-shadow:0 2px 3px #2026370c,inset 0 1px 0 #fff;padding:16px;border-left:3px solid var(--accent)}
 body .rep-grid{border-top-color:#cdd3e2}body .rep-grid>div{border-right-color:#cdd3e2}
 @media(max-width:700px){body .panel,body .library-panel{padding:16px}body .plan-card{padding:16px}body .exercise-detail{padding-top:0}}
+
+/* Tonal section hierarchy: one hue family, distinct depths. */
+:root{
+  --indigo-50:#f4f5fc;
+  --indigo-100:#e9ebf8;
+  --indigo-200:#d8dcf1;
+  --indigo-300:#bcc3e5;
+  --indigo-400:#919bce;
+  --indigo-500:#737db9;
+  --indigo-600:#565baa;
+  --indigo-700:#444b88;
+  --indigo-800:#353d66;
+  --slate-100:#edf0f6;
+  --slate-200:#dce2ed;
+  --slate-300:#bbc6d8;
+}
+/* Each overview metric has its own softly tinted material. */
+body .stat-card.workout{background:linear-gradient(135deg,var(--indigo-50),var(--indigo-200));border-color:#bfc6e4}
+body .stat-card.water{background:linear-gradient(135deg,#f5f7fb,var(--slate-200));border-color:#c2cddd}
+body .stat-card.weight{background:linear-gradient(135deg,#f0f1fa,#cdd2eb);border-color:#b7bfdc}
+body .stat-card.sessions{background:linear-gradient(135deg,#fafbfe,#e4e7f5);border-color:#cbd1e8}
+body .workout .stat-icon{background:linear-gradient(#e9ecfc,#bfc7e9);color:var(--indigo-700)}
+body .water .stat-icon{background:linear-gradient(#e9eef7,#c3cedf);color:#485c83}
+body .weight .stat-icon{background:linear-gradient(#dce1f5,#b1bbdf);color:var(--indigo-800)}
+body .sessions .stat-icon{background:linear-gradient(#f3f4fc,#d4daf0);color:var(--indigo-600)}
+body .panel.activity{background:linear-gradient(135deg,#f7f8fd,#e4e8f5);border-color:#c4cce2}
+body .panel.recent{background:linear-gradient(135deg,#fcfcff,#eef0f7);border-color:#d2d8e7}
+body .plot{background:linear-gradient(#f5f6fc,#dde3f2)}
+body .bar-column:nth-child(2n) .bar{background:linear-gradient(90deg,#a5afd7,#7c89bf 35%,#6875ad)}
+body .bar-column:nth-child(3n) .bar{background:linear-gradient(90deg,#737fb6,#4c5a93 35%,#414d83)}
+body .date-badge{background:linear-gradient(#e9edf8,#cfd7eb);border-color:#bcc8e1}
+/* Workout rows step through neighboring indigo and slate tones. */
+body .plan-card.push{background:linear-gradient(120deg,#e7eafa,#cbd2ee);border-color:#b8c2e1}
+body .plan-card.pull{background:linear-gradient(120deg,#f1f4fa,#dce3ef);border-color:#c3cddd}
+body .plan-card.legs{background:linear-gradient(120deg,#e5e9f6,#c3cce6);border-color:#aebbd9}
+body .plan-card.full{background:linear-gradient(120deg,#f6f6fc,#e0e2f3);border-color:#c9cde5}
+body .push .plan-icon{background:linear-gradient(#cbd3ef,#aebbe2);color:#354577}
+body .pull .plan-icon{background:linear-gradient(#e1e8f4,#c2cde0);color:#495a7b}
+body .legs .plan-icon{background:linear-gradient(#c5cee9,#a0aed4);color:#303f6c}
+body .full .plan-icon{background:linear-gradient(#e3e5f7,#c7cceb);color:#50558c}
+body .plan-card:hover{background:linear-gradient(#edf0fc,#c6cfea);border-color:var(--indigo-400)}
+/* The library, anatomy, and notes remain visually separate. */
+body .library-panel{background:linear-gradient(130deg,#f7f8fd,#e5e9f4);border-color:#c6cee1}
+body .search-box{background:linear-gradient(#dbe1ef,#f0f3fa);border-color:#bbc6dc}
+body .exercise-row.selected{background:linear-gradient(#c3cce9,#dce3f5);border-color:#b5c1e0}
+body .exercise-row:hover{background:#d5ddf0}
+body .anatomy-panel{background:radial-gradient(ellipse at 45% 35%,#f5f7fe,#d3dcee);border-color:#becae1}
+body .muscle-facts{background:linear-gradient(120deg,#f3f5fc,#e3e8f5);padding:16px;border-radius:8px;border:1px solid #cbd4e7;box-shadow:inset 0 1px 0 #fff}
+body .exercise-notes{background:repeating-linear-gradient(0deg,transparent 0 27px,#565baa0c 27px 28px),linear-gradient(110deg,#e9edf9,#d3dcf1);border-left-color:var(--indigo-500)}
+body .rep-grid>div:nth-child(1){background:linear-gradient(#f0f3fb,#dde4f4)}
+body .rep-grid>div:nth-child(2){background:linear-gradient(#e8edf8,#d1daf0)}
+body .rep-grid>div:nth-child(3){background:linear-gradient(#e2e8f6,#c7d2ec)}
+body .rep-grid>div,body .rep-grid>div:first-child{padding:16px}
+body .tag.chest{background:linear-gradient(#e0e5f7,#c8d1ef);color:#364673;border-color:#b8c5e5}
+body .tag.back{background:linear-gradient(#e8eef7,#d3ddea);color:#405577;border-color:#c2cede}
+body .tag.shoulders{background:linear-gradient(#dce3f5,#becbe8);color:#34476d;border-color:#afbedc}
+body .tag.arms{background:linear-gradient(#eceefa,#d9def2);color:#4b5281;border-color:#c6cee6}
+body .tag.legs{background:linear-gradient(#d5ddf2,#b9c5e5);color:#303f68;border-color:#aebbd9}
+body .tag.core,body .tag.neutral{background:linear-gradient(#eff2f8,#dce2ee);color:#43516e;border-color:#cbd3e3}
