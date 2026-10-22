@@ -1,0 +1,101 @@
+/* Slate and indigo: shared spacing, typography, and material styling. */
+:root{--paper:#ffffff;--canvas:#f7f8fc;--ink:#202637;--accent:#565baa;--soft:#dfe3ee;--muted:var(--ink);--green:var(--accent);--space:8px;color:var(--ink);background:var(--canvas)}
+body,body.workouts-page,body.exercises-page{background:var(--canvas);color:var(--ink)}
+body *,body *::before,body *::after{transition-duration:180ms!important}
+body svg{stroke-width:1.8;fill:none;stroke:currentColor}
+body .sidebar{background:var(--ink);border-right:1px solid var(--ink);color:var(--paper);padding-top:32px}
+body .brand{color:var(--paper);margin-bottom:48px;gap:16px}
+body .sidebar nav{gap:8px}body .sidebar .nav-item{color:var(--soft);border-radius:8px;gap:24px;min-height:48px;padding:16px;transform:none}
+body .sidebar .nav-item.active{background:var(--accent);color:var(--paper)}body .sidebar .nav-item.active svg{fill:none}
+body .sidebar .nav-item:hover{background:var(--accent);color:var(--paper);transform:none}
+body .nav-divider{background:var(--accent);margin:16px 8px}
+body .topbar{background:var(--canvas);border-bottom:1px solid var(--soft);gap:24px}
+body .profile,body .icon-button{color:var(--ink)}body .avatar{background:var(--ink);color:var(--paper)}body .notification>span{background:var(--accent)}body .profile-divider{background:var(--soft)}
+body h1,body h2,body h3,body h4,body strong,body .stat-card h2{color:var(--ink)}
+body h1{letter-spacing:-1.2px}body p,body .date,body .subtitle,body .stat-label,body .muscles,body .stat-change span,body .exercise-intro,body .exercise-heading p,body .plans-heading p,body .duration,body .workout-info p,body .exercise-count,body .plan-description>span{color:var(--ink)}
+body button,body .week-button,body .edit-exercise,body .start-button,body .new-workout,body .add-exercise,body .filter{border-radius:8px}
+body .start-button,body .new-workout,body .add-exercise,body .filter.chosen{background:var(--accent);color:var(--paper);border:1px solid var(--accent);padding:12px 24px;gap:8px}
+body .start-button:hover,body .new-workout:hover,body .add-exercise:hover,body .filter.chosen:hover{background:var(--ink);border-color:var(--ink)}
+body .week-button,body .edit-exercise,body .filter:not(.chosen){background:var(--paper);color:var(--ink);border:1px solid var(--soft);padding:8px 16px}
+body .week-button:hover,body .edit-exercise:hover,body .filter:not(.chosen):hover{background:var(--soft)}
+body .view-all{color:var(--accent);gap:8px}body .view-all:hover{color:var(--ink)}
+body :is(button,a,input):focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+body .greeting{padding-top:24px}body .date{margin-bottom:16px}body .summary{gap:16px;margin-top:32px}
+body .stat-card{background:var(--paper);border:1px solid var(--soft);border-radius:8px;padding:24px;transform:none}
+body .stat-card:hover{border-color:var(--accent);transform:none}body .stat-top{gap:16px}body .stat-label{margin:8px 0 16px}
+body .stat-icon,body .plan-icon{background:var(--soft);color:var(--accent);border-radius:8px}body .stat-icon svg,body .plan-icon svg{fill:none;stroke:currentColor}
+body .stat-change{margin-top:16px}body .stat-change p{color:var(--accent);gap:8px}
+body .water-meter{background:var(--soft);margin-top:32px}body .water-meter span{background:var(--accent);width:50%}
+body .details{gap:32px;margin-top:32px}body .panel{background:transparent;border:0;border-top:1px solid var(--soft);border-radius:0;padding:24px 0;min-height:0}
+body .panel-heading{gap:16px}body .panel-heading h2{font-size:22px}body .chart{margin-top:32px;gap:16px}
+body .plot{border-left-color:var(--soft)}body .grid-lines i{background:var(--soft)}body .bar{background:var(--accent);border-radius:4px 4px 0 0}body .bar:hover{background:var(--ink);transform:none}
+body .y-axis,body .bar-column>span{color:var(--ink)}body .workout-list{margin-top:16px}body .workout-row{border-bottom-color:var(--soft);gap:16px}body .workout-row:hover{background:var(--soft)}body .date-badge{background:var(--soft);border-radius:8px}body .date-badge span{color:var(--ink)}
+body .status,body .tag{background:var(--soft);color:var(--ink);border-radius:6px;padding:8px 12px;border:0}
+body .plans-content{padding-top:32px}body .plans-heading{margin-bottom:32px;gap:24px}body .plans-list{gap:0;border-top:1px solid var(--soft)}
+body .plan-card,body .plan-card.push{background:transparent;border:0;border-bottom:1px solid var(--soft);border-radius:0;padding:24px 8px;gap:24px;transform:none}
+body .plan-card:hover{background:var(--soft);transform:none}body .plan-description{gap:8px}body .plan-description strong{color:var(--ink)}body .plan-chevron,body .plan-card:hover .plan-chevron{color:var(--accent)}
+body .exercise-heading{padding:32px 0;gap:24px}body .exercise-layout{gap:32px;grid-template-columns:.85fr 1fr}
+body .library-panel,body .exercise-detail{background:transparent;border:0;border-radius:0;padding:0 0 32px}
+body .library-panel{border-right:1px solid var(--soft);padding-right:32px}
+body .search-box{background:var(--paper);border:1px solid var(--soft);border-radius:8px;padding:8px 16px;gap:8px;color:var(--ink)}body .search-box input,body .search-box input::placeholder{color:var(--ink)}body .search-box:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+body .filters{gap:8px;margin:16px 0}body .filter,body .filter.chosen{padding:8px;font-size:12px}
+body .exercise-row{border-bottom:1px solid var(--soft);padding:8px;gap:8px;color:var(--ink);min-height:48px}body .exercise-row.selected{background:var(--soft);border-radius:8px;margin:0;width:100%;padding:8px}
+body .exercise-row:hover{background:var(--soft)}body .row-arrow,body .selected .row-arrow{color:var(--accent)}
+body .detail-heading{gap:16px}body .detail-heading>div{gap:16px}body .detail-heading h2{margin:0;font-size:32px}body .exercise-intro{margin:16px 0 24px}
+body .muscle-overview{gap:24px}body .anatomy-panel{background:var(--paper);border:1px solid var(--soft);border-radius:8px}body .anatomy g{stroke:var(--ink)}body .anatomy path[fill]{fill:var(--accent);stroke:var(--accent)}
+body .muscle-facts{border:0;border-radius:0;padding:8px 0;gap:16px}body .muscle-facts dt{margin-bottom:8px}body .muscle-facts dd{gap:8px}
+body .exercise-notes{border:0;border-left:2px solid var(--accent);border-radius:0;background:transparent;padding:8px 16px;margin:24px 0 32px;gap:16px}body .exercise-notes>svg{color:var(--accent)}body .exercise-notes h3{margin-bottom:8px}body .exercise-notes p{color:var(--ink)}
+body .rep-section>h3{margin-bottom:16px}body .rep-grid{gap:0;border-top:1px solid var(--soft)}body .rep-grid>div{border:0;border-right:1px solid var(--soft);border-radius:0;padding:16px}body .rep-grid>div:first-child{padding-left:0}body .rep-grid>div:last-child{border-right:0}body .rep-grid h4{margin-bottom:8px}body .rep-grid p{color:var(--ink);margin-top:8px}
+body .edit-exercise svg{width:16px;height:16px}body .new-workout svg,body .add-exercise svg{width:20px;height:20px}
+@media(max-width:1150px){body .stat-card{padding:16px}body .exercise-layout{grid-template-columns:1fr}body .library-panel{border-right:0;border-bottom:1px solid var(--soft);padding-right:0}body .details{gap:24px}}
+@media(max-width:700px){body .brand{gap:0}body .sidebar .nav-item{gap:0;padding:16px 8px}body .greeting{padding-top:16px}body .summary{gap:16px;margin-top:24px}body .details{gap:16px;margin-top:24px}body .stat-top{gap:8px}body .stat-card{padding:16px}body .exercise-heading{padding:24px 0}body .plan-card{gap:16px;padding:16px 8px}body .rep-grid{grid-template-columns:1fr}body .rep-grid>div{border-right:0;border-bottom:1px solid var(--soft);padding:16px 0}body .detail-heading{flex-wrap:wrap}body .panel-heading h2{font-size:18px}body .chart{gap:8px}}
+@media(prefers-reduced-motion:reduce){body *,body *::before,body *::after{transition:none!important}}
+body .row-arrow svg{width:16px;height:16px}body .exercise-row .tag{padding:8px;font-size:12px}body .stat-card .stat-icon{width:56px;height:56px}body .stat-card .stat-change{margin-left:72px}body .stat-card .muscles{white-space:normal}body .stat-card h2{font-size:24px}body .sidebar svg{fill:none}body .anatomy{stroke:var(--ink)}
+@media(max-width:700px){body .stat-card .stat-change{margin-left:0}body .stat-card .stat-icon{width:40px;height:40px}body .stat-card h2{font-size:21px}}
+/* Palette and spacing take precedence over page-specific legacy rules. */
+body.workouts-page .sidebar,body.exercises-page .sidebar{background:var(--ink)}
+body .topbar,body.workouts-page .topbar,body.exercises-page .topbar{background:var(--canvas)}
+body main{padding-left:32px;padding-right:24px}
+body .exercise-row{grid-template-columns:minmax(0,1fr) 88px 16px}
+@media(max-width:700px){body main{padding-left:16px;padding-right:16px}body .exercise-row{grid-template-columns:minmax(0,1fr) 64px 16px}}
+
+/* Material finish: slate leather, satin panels, and indigo enamel. */
+:root{--surface-shadow:0 2px 3px #20263712,0 10px 24px #2026370c,inset 0 1px 0 #fff;--bevel:inset 0 1px 0 #ffffffa6,inset 0 -1px 0 #20263718}
+body,body.workouts-page,body.exercises-page{background:repeating-linear-gradient(0deg,#ffffff26 0 1px,transparent 1px 4px),linear-gradient(130deg,var(--canvas),var(--soft));background-attachment:fixed}
+body .sidebar,body.workouts-page .sidebar,body.exercises-page .sidebar{background:repeating-radial-gradient(ellipse at 30% 40%,#ffffff05 0 1px,transparent 1px 4px),linear-gradient(110deg,#30374a,var(--ink) 80%);border-right:1px solid #161c2b;box-shadow:4px 0 12px #20263726,inset -3px 0 0 #ffffff08}
+body .sidebar::after{content:"";position:absolute;inset:12px 8px;border:1px dashed #dfe3ee26;border-radius:8px;pointer-events:none}
+body .brand{position:relative;z-index:1;text-shadow:0 2px 1px #151b2b}body .brand svg{filter:drop-shadow(0 2px 1px #151b2b)}
+body .sidebar .nav-item{position:relative;z-index:1;border:1px solid transparent;text-shadow:0 -1px 0 #202637}
+body .sidebar .nav-item.active{background:linear-gradient(#7378bc,#565baa 48%,#4b5098 50%,#565baa);border-color:#343a72;box-shadow:inset 0 1px 0 #dfe3ee70,inset 0 -1px 0 #303666,0 2px 4px #151b2b55}
+body .sidebar .nav-item:hover{background:linear-gradient(#666db1,#4a5190);box-shadow:inset 0 1px 0 #ffffff25,0 2px 4px #151b2b30}
+body .nav-divider{background:#151b2b;box-shadow:0 1px 0 #ffffff16}
+body .topbar,body.workouts-page .topbar,body.exercises-page .topbar{background:repeating-linear-gradient(0deg,#ffffff40 0 1px,#20263703 1px 3px),linear-gradient(var(--canvas),var(--soft));box-shadow:inset 0 1px 0 #fff,0 2px 5px #2026370a;border-bottom:1px solid #cdd3e2}
+body .avatar{background:radial-gradient(ellipse at 35% 20%,#626b82,#30384e 60%,var(--ink));border:2px solid #cdd3e2;box-shadow:0 2px 4px #20263730,inset 0 1px 2px #ffffff50;text-shadow:0 -1px 0 var(--ink)}
+body .notification>span{background:radial-gradient(circle at 35% 25%,#dfe3ee,var(--accent) 65%);border:1px solid #454b91;box-shadow:0 0 4px #565baa40}
+body h1,body h2,body h3{ text-shadow:0 1px 0 #fff }
+body .stat-card,body .panel{background:linear-gradient(125deg,#fff,var(--canvas));border:1px solid #cfd5e2;border-radius:8px;box-shadow:var(--surface-shadow)}
+body .panel{padding:24px;min-width:0}body .stat-card:hover{box-shadow:0 3px 5px #20263718,0 12px 24px #20263712,inset 0 1px 0 #fff}
+body .stat-icon,body .plan-icon{background:linear-gradient(#f7f8fc,#dfe3ee);border:1px solid #cdd3e2;box-shadow:var(--bevel),0 2px 3px #20263714;color:var(--accent)}
+body .start-button,body .new-workout,body .add-exercise,body .filter.chosen{background:linear-gradient(#7479bc,#5c61ae 46%,#50559f 49%,#5a60aa);border:1px solid #414784;box-shadow:inset 0 1px 0 #dfe3eea6,inset 0 -1px 0 #414784,0 3px 0 #3e447d,0 5px 8px #20263722;text-shadow:0 -1px 0 #414784}
+body .start-button:hover,body .new-workout:hover,body .add-exercise:hover,body .filter.chosen:hover{background:linear-gradient(#8186c4,#676cb6 46%,#5b61ac 49%,#646ab3);border-color:#414784;box-shadow:inset 0 1px 0 #dfe3ee,0 3px 0 #3e447d,0 6px 10px #20263726}
+body .start-button:active,body .new-workout:active,body .add-exercise:active,body .filter.chosen:active{transform:translateY(2px);box-shadow:inset 0 2px 4px #20263740,0 1px 0 #3e447d}
+body .week-button,body .edit-exercise,body .filter:not(.chosen){background:linear-gradient(#fff,#e8ebf3);border-color:#cdd3e2;box-shadow:var(--bevel),0 2px 2px #20263712;text-shadow:0 1px 0 #fff}
+body .week-button:hover,body .edit-exercise:hover,body .filter:not(.chosen):hover{background:linear-gradient(#fff,var(--soft))}
+body .search-box{background:linear-gradient(#e6e9f2,#f7f8fc);border-color:#c8cedd;box-shadow:inset 0 2px 4px #20263718,0 1px 0 #fff}
+body .water-meter{background:linear-gradient(#cdd3e2,#e8ebf3);border:1px solid #c0c8db;box-shadow:inset 0 2px 3px #20263726,0 1px 0 #fff}
+body .water-meter span{background:linear-gradient(#959ad0,#686eb6 45%,#5056a0 50%,#7479bc);box-shadow:inset 0 1px 0 #dfe3ee,inset 0 -1px 0 #414784}
+body .plot{background:linear-gradient(var(--canvas),#edf0f6);border:1px solid var(--soft);box-shadow:inset 0 1px 5px #2026370c}
+body .grid-lines i{background:#cdd3e280;box-shadow:0 1px 0 #ffffff80}
+body .bar{background:linear-gradient(90deg,#858ac6,#6268b0 25%,#50569e 75%,#7278ba);border:1px solid #4d5397;border-bottom:0;box-shadow:inset 1px 1px 0 #dfe3ee70,2px 0 3px #20263714}
+body .bar:hover{background:linear-gradient(90deg,#9499d0,#7278ba,#6268b0)}
+body .date-badge,body .status,body .tag{background:linear-gradient(var(--canvas),var(--soft));border:1px solid #cfd5e2;box-shadow:inset 0 1px 0 #fff,0 1px 2px #2026370c}
+body .plan-card,body .plan-card.push{background:linear-gradient(#fff,#edf0f7);border:1px solid #cfd5e2;border-radius:8px;box-shadow:inset 0 1px 0 #fff,0 3px 0 #d5dbea,0 5px 9px #20263712;padding:24px}
+body .plans-list{gap:16px;border:0}body .plan-card.push{background:linear-gradient(#f0f1fa,#e2e4f2);border-color:#c6cae1}
+body .plan-card:hover{background:linear-gradient(#f7f8fc,#e5e8f5);box-shadow:inset 0 1px 0 #fff,0 3px 0 #cbd1e5,0 7px 12px #20263720}
+body .library-panel{background:linear-gradient(125deg,#fff,var(--canvas));border:1px solid #cfd5e2;border-radius:8px;padding:24px;box-shadow:var(--surface-shadow)}
+body .exercise-detail{padding:8px 0 24px}
+body .exercise-row.selected{background:linear-gradient(#dfe3ee,#eef0f8);border:1px solid #cdd3e2;box-shadow:inset 0 1px 3px #20263712,0 1px 0 #fff}
+body .anatomy-panel{background:radial-gradient(ellipse at center,#fff,#e8ebf3);border:1px solid #cfd5e2;box-shadow:inset 0 2px 7px #2026370e,0 1px 0 #fff}
+body .exercise-notes{background:repeating-linear-gradient(0deg,transparent 0 27px,#565baa0a 27px 28px),linear-gradient(110deg,var(--canvas),#e9ecf5);box-shadow:0 2px 3px #2026370c,inset 0 1px 0 #fff;padding:16px;border-left:3px solid var(--accent)}
+body .rep-grid{border-top-color:#cdd3e2}body .rep-grid>div{border-right-color:#cdd3e2}
+@media(max-width:700px){body .panel,body .library-panel{padding:16px}body .plan-card{padding:16px}body .exercise-detail{padding-top:0}}
