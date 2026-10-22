@@ -6,6 +6,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         dashboard: fileURLToPath(new URL('./index.html', import.meta.url)),
+        exercises: fileURLToPath(new URL('./exercises.html', import.meta.url)),
         workouts: fileURLToPath(new URL('./workouts.html', import.meta.url)),
       },
     },

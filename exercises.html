@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="GymTracker exercise library static interface prototype."><title>Exercises — GymTracker</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="exercises.css"></head><body class="exercises-page">  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="dumbbell" viewBox="0 0 24 24"><path d="M8 12h8M5 7v10M2 10v4M19 7v10M22 10v4M8 5v14M16 5v14"/></symbol>
+    <symbol id="home" viewBox="0 0 24 24"><path d="m3 10 9-8 9 8M5 9v12h5v-7h4v7h5V9"/></symbol>
+    <symbol id="calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="17" rx="2"/><path d="M7 2v6M17 2v6M3 10h18"/></symbol>
+    <symbol id="drop" viewBox="0 0 24 24"><path d="M12 2C10 6 5 11 5 15a7 7 0 0 0 14 0c0-4-5-9-7-13Z"/><path d="M16 15a4 4 0 0 1-3 4"/></symbol>
+    <symbol id="weight" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 6a4 4 0 0 0 8 0M12 6V4"/></symbol>
+    <symbol id="chart" viewBox="0 0 24 24"><path d="M5 21v-7M12 21V8M19 21V2"/></symbol>
+    <symbol id="settings" viewBox="0 0 24 24"><path d="m9 3 1-2h4l1 2 3 2 3 1v4l-2 2v3l1 3-3 3-3-1h-3l-3 1-3-3 1-3v-3L2 9V6l3-1Z"/><circle cx="12" cy="11" r="3"/></symbol>
+    <symbol id="logout" viewBox="0 0 24 24"><path d="M12 3H4v18h8M10 12h12m-5-5 5 5-5 5"/></symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+    <symbol id="down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 3"/></symbol>
+    <symbol id="bell" viewBox="0 0 24 24"><path d="M5 9a7 7 0 0 1 14 0c0 8 2 8 2 9H3c0-1 2-1 2-9M9 21h6"/></symbol>
+    <symbol id="trend" viewBox="0 0 24 24"><path d="M12 3v18m-7-7 7 7 7-7"/></symbol>
+  </defs></svg>
+  <aside class="sidebar">
+    <a class="brand" href="#" aria-label="GymTracker home"><svg><use href="#dumbbell"/></svg><span><b>Gym</b>Tracker</span></a>
+    <nav aria-label="Main navigation">
+      <a class="nav-item" href="index.html"><svg><use href="#home"/></svg>Dashboard</a>
+      <a class="nav-item" href="workouts.html"><svg><use href="#dumbbell"/></svg>Workouts</a>
+      <a class="nav-item active" href="exercises.html" aria-current="page"><svg><use href="#dumbbell"/></svg>Exercises</a>
+      <button class="nav-item"><svg><use href="#calendar"/></svg>Gym Sessions</button>
+      <button class="nav-item"><svg><use href="#drop"/></svg>Water Tracking</button>
+      <button class="nav-item"><svg><use href="#weight"/></svg>Weight Tracking</button>
+      <button class="nav-item"><svg><use href="#chart"/></svg>Statistics</button>
+      <div class="nav-divider"></div>
+      <button class="nav-item"><svg><use href="#settings"/></svg>Settings</button>
+      <button class="nav-item"><svg><use href="#logout"/></svg>Logout</button>
+    </nav>
+  </aside>
+<main>    <header class="topbar">
+      <button class="notification icon-button" aria-label="Notifications"><svg><use href="#bell"/></svg><span></span></button>
+      <div class="profile-divider"></div>
+      <button class="profile"><span class="avatar">AS</span><span>Ahmad Shah</span><svg><use href="#down"/></svg></button>
+    </header>
+<section class="exercise-heading"><div><h1>Exercises</h1><p>Browse, search and manage exercises to use in your workouts.</p></div><button class="add-exercise"><span aria-hidden="true">＋</span> Add Exercise</button></section><div class="exercise-layout"><section class="library-panel" aria-label="Exercise library"><label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m16 16 5 5"/></svg><input type="search" placeholder="Search exercises..." aria-label="Search exercises (visual prototype)"></label><div class="filters" aria-label="Muscle group filters"><button class="filter chosen">All</button><button class="filter">Chest</button><button class="filter">Back</button><button class="filter">Shoulders</button><button class="filter">Arms</button><button class="filter">Legs</button><button class="filter">Core</button></div><div class="exercise-list"><button class="exercise-row selected"><span>Bench Press</span><span class="tag chest">Chest</span><span class="row-arrow" aria-hidden="true">›</span></button>
+<button class="exercise-row"><span>Incline Dumbbell Press</span><span class="tag chest">Chest</span><span class="row-arrow" aria-hidden="true">›</span></button>
+<button class="exercise-row"><span>Push Up</span><span class="tag chest">Chest</span><span class="row-arrow" aria-hidden="true">›</span></button>
+<button class="exercise-row"><span>Pull Up</span><span class="tag back">Back</span><span class="row-arrow" aria-hidden="true">›</span></button>
+<button class="exercise-row"><span>Lat Pulldown</span><span class="tag back">Back</span><span class="row-arrow" aria-hidden="true">›</span></button>
+<button class="exercise-row"><span>Barbell Row</span><span class="tag back">Back</span><span class="row-arrow" aria-hidden="true">›</span></button>
+<button class="exercise-row"><span>Shoulder Press</span><span class="tag shoulders">Shoulders</span><span class="row-arrow" aria-hidden="true">›</span></button>
+<button class="exercise-row"><span>Lateral Raise</span><span class="tag shoulders">Shoulders</span><span class="row-arrow" aria-hidden="true">›</span></button>
+<button class="exercise-row"><span>Bicep Curl</span><span class="tag arms">Arms</span><span class="row-arrow" aria-hidden="true">›</span></button>
+<button class="exercise-row"><span>Tricep Pushdown</span><span class="tag arms">Arms</span><span class="row-arrow" aria-hidden="true">›</span></button>
+<button class="exercise-row"><span>Squat</span><span class="tag legs">Legs</span><span class="row-arrow" aria-hidden="true">›</span></button>
+<button class="exercise-row"><span>Leg Press</span><span class="tag legs">Legs</span><span class="row-arrow" aria-hidden="true">›</span></button>
+<button class="exercise-row"><span>Plank</span><span class="tag core">Core</span><span class="row-arrow" aria-hidden="true">›</span></button>
+</div></section><article class="exercise-detail"><div class="detail-heading"><div><h2>Bench Press</h2><span class="tag chest">Chest</span></div><button class="edit-exercise"><span aria-hidden="true">♢</span> Edit Exercise</button></div><p class="exercise-intro">A compound exercise that primarily targets the chest muscles, while also engaging the shoulders and triceps.</p><div class="muscle-overview"><div class="anatomy-panel"><svg class="anatomy" viewBox="0 0 260 300" role="img" aria-label="Front torso illustration highlighting the chest muscles"><g fill="none" stroke="#818b9b" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M112 34c-4-16 0-26 18-26s22 10 18 26l-5 18-13 8-13-8Z M109 22l-5-3 1 15 7 5m38-17 5-3-1 15-7 5M117 51l-3 21-34 13c-22 10-28 23-32 45l-15 39-12 73m122-191 3 21 34 13c22 10 28 23 32 45l15 39 12 73M114 67l16 14 16-14M130 60v23M80 86l21 7m79-7-21 7M50 125c10-15 17-20 29-21M210 125c-10-15-17-20-29-21M78 124l-11 43-18 23-12 52m145-118 11 43 18 23 12 52M85 131l7 38-6 34-12 65m101-137-7 38 6 34 12 65M93 202l16 33 11 29h20l11-29 16-33M130 130v91M106 139q12-5 21 0l-1 17-19-1Zm28 0q12-5 21 0l-1 16-19 1ZM108 160l18 2-1 15-16-2Zm26 2 18-2-1 15-16 2ZM111 180l14 2-1 14-12-3m23-11 14-2-1 13-12 3M111 81l-11 10m49-10 11 10"/><path fill="#ff999f" stroke="#f2777d" d="M125 91c-20-14-35-10-45 6l-10 16 13 20c12 8 29 8 43-1 4-10 3-28-1-41Zm10 0c20-14 35-10 45 6l10 16-13 20c-12 8-29 8-43-1-4-10-3-28 1-41Z"/><path d="m89 76 15 7m67-7-15 7M117 29h7m12 0h7M130 32v12m-7 4h14"/></g></svg></div><dl class="muscle-facts"><div><dt>Primary Muscle Group</dt><dd><span class="tag chest">Chest</span></dd></div><div><dt>Secondary Muscle Groups</dt><dd><span class="tag neutral">Shoulders</span><span class="tag neutral">Triceps</span></dd></div><div><dt>Equipment</dt><dd><span class="tag neutral">Barbell</span></dd></div><div><dt>Exercise Type</dt><dd><span class="tag neutral">Compound</span></dd></div></dl></div><section class="exercise-notes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6ZM14 2v6h6M9 12h8m-8 4h6"/></svg><div><h3>Notes</h3><p>Keep your back flat, lower the bar to your chest, and push up with control.</p></div></section><section class="rep-section"><h3>Common Sets &amp; Reps</h3><div class="rep-grid"><div><h4>Strength</h4><strong>3–5 reps</strong><p>3–5 sets</p></div><div><h4>Hypertrophy</h4><strong>8–12 reps</strong><p>3–4 sets</p></div><div><h4>Endurance</h4><strong>15+ reps</strong><p>2–3 sets</p></div></div></section></article></div></main></body></html>
