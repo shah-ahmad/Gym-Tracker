@@ -9,7 +9,7 @@ A fitness dashboard concept that brings workouts, hydration, body weight, and gy
 ![Status: UI Prototype](https://img.shields.io/badge/Status-UI_Prototype-318b55?style=flat-square)
 ![HTML5](https://img.shields.io/badge/HTML5-Semantic_Markup-e34f26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-Responsive_Design-1572b6?style=flat-square&logo=css&logoColor=white)
-![Dependencies](https://img.shields.io/badge/Build_Dependencies-None-555555?style=flat-square)
+![Dependencies](https://img.shields.io/badge/Dev_Tool-Vite-555555?style=flat-square)
 
 [Overview](#overview) · [Dashboard](#dashboard-at-a-glance) · [Run Locally](#run-locally) · [Roadmap](#development-roadmap)
 
@@ -55,9 +55,23 @@ The current deliverable is a **static, responsive dashboard built with HTML and 
 | Application logic | Not implemented in this phase |
 | Backend and persistence | Not implemented in this phase |
 
-No JavaScript framework, package installation, or build step is required. The dashboard uses CSS for its visual interactions and chart rendering.
+The dashboard uses CSS for its visual interactions and chart rendering. Vite provides an optional development server with automatic refresh and a production build command; no JavaScript framework is used.
 
 ## Run Locally
+
+### Recommended — Vite development server
+
+With Node.js and npm installed, run these commands from the repository directory:
+
+```bash
+npm install
+npm run dev
+```
+
+Open the local URL printed in the terminal. Changes to HTML and CSS refresh automatically. Stop the server with `Ctrl+C`.
+
+Use `npm run build` to generate a production build in `dist/`, and `npm run preview` to preview that build.
+
 
 ### Option 1 — Open directly
 
