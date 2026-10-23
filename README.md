@@ -2,16 +2,16 @@
 
 # GymTracker
 
-### A clearer view of your fitness journey.
+### Your training, in one place.
 
-A fitness dashboard concept that brings workouts, hydration, body weight, and gym attendance into one focused interface.
+An academic fitness application prototype for viewing workout plans, exploring exercises, and reviewing daily activity.
 
-![Status: UI Prototype](https://img.shields.io/badge/Status-UI_Prototype-318b55?style=flat-square)
-![HTML5](https://img.shields.io/badge/HTML5-Semantic_Markup-e34f26?style=flat-square&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-Responsive_Design-1572b6?style=flat-square&logo=css&logoColor=white)
-![Dependencies](https://img.shields.io/badge/Dev_Tool-Vite-555555?style=flat-square)
+![Status](https://img.shields.io/badge/Status-UI_Prototype-328A83?style=flat-square)
+![HTML5](https://img.shields.io/badge/HTML5-Semantic_Markup-183B45?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-Responsive_Design-183B45?style=flat-square&logo=css&logoColor=white)
+![Vite](https://img.shields.io/badge/Dev_Tool-Vite-328A83?style=flat-square&logo=vite&logoColor=white)
 
-[Overview](#overview) · [Dashboard](#dashboard-at-a-glance) · [Run Locally](#run-locally) · [Roadmap](#development-roadmap)
+[Overview](#overview) · [Pages](#pages) · [Run locally](#run-locally) · [Roadmap](#development-roadmap)
 
 </div>
 
@@ -19,121 +19,135 @@ A fitness dashboard concept that brings workouts, hydration, body weight, and gy
 
 ## Overview
 
-GymTracker is an academic web application project exploring how a single dashboard can make daily fitness information easier to understand. The interface presents a user's workout plan, water intake, weight trend, attendance, and recent activity without requiring them to switch between separate views.
+GymTracker explores how a clear interface can bring workout planning and fitness information together. The current deliverable is a **static, responsive HTML and CSS prototype with three linked pages**: Dashboard, Workouts, and Exercises.
 
-The current deliverable is a **static, responsive dashboard built with HTML and CSS**. It establishes the visual design and information structure for future application development. All values are sample data; buttons and navigation demonstrate appearance and hover states only.
+The pages use sample data to demonstrate layout and visual design. Navigation between these three pages works; workout actions, search, filters, and editing controls are presentation-only. There is no backend, authentication, or saved user data yet.
 
-## Dashboard at a Glance
+## Pages
 
-| Area | What the prototype presents |
+| Page | Content | File |
+| :--- | :--- | :--- |
+| **Dashboard** | Daily activity summary, planned workout, hydration, body weight, gym attendance, weekly chart, and recent workouts. | [index.html](index.html) |
+| **Workouts** | Push, pull, leg, and full-body plans with muscle groups and exercise counts. | [workouts.html](workouts.html) |
+| **Exercises** | Sample exercise library, muscle-group labels, and a bench-press detail panel with a torso illustration, equipment, notes, and example repetition ranges. | [exercises.html](exercises.html) |
+
+The remaining sidebar sections are placeholders for future development.
+
+## Visual design
+
+The interface combines a compact layout with **skeuomorphic details**: raised buttons, inset search fields, textured navigation, and softly shaded panels. A shared theme keeps the three pages visually consistent.
+
+| Design token | Color |
 | :--- | :--- |
-| **Daily overview** | A personalized greeting and a concise motivational message. |
-| **Today's workout** | A sample push-day routine and a styled workout action. |
-| **Hydration** | Sample water intake with a visual progress indicator. |
-| **Body weight** | A sample weight measurement and change from the previous week. |
-| **Gym attendance** | A sample session count with a weekly comparison. |
-| **Weekly activity** | A CSS bar chart showing example activity across seven days. |
-| **Recent workouts** | Sample sessions with dates, muscle groups, durations, and completion labels. |
-| **Navigation** | A persistent sidebar presenting the intended application sections. |
+| Background | `#F3F8F7` |
+| Surface | `#FFFFFF` |
+| Text | `#183B45` |
+| Accent | `#328A83` |
+| Border | `#D5E7E4` |
 
-## Design Approach
-
-- **Clear visual hierarchy:** summary cards place daily information above detailed activity history.
-- **Consistent visual language:** a dark sidebar, light surfaces, and green accents connect the interface.
-- **Responsive layout:** cards and content reorganize for desktop, tablet, and narrow mobile screens.
-- **Subtle feedback:** navigation, buttons, cards, and chart bars have CSS hover effects.
-- **Accessibility considerations:** semantic page regions, labeled icon controls, visible keyboard focus, descriptive chart text, and reduced-motion support.
+Related teal shades distinguish sections and chart bars. The design also uses sentence-case headings, Lucide outline icons, compact navigation, responsive layouts, and subtle CSS transitions. Keyboard focus styles, descriptive chart text, and reduced-motion support are included; a full accessibility audit remains planned.
 
 ## Technology
 
-| Layer | Current implementation |
+| Layer | Implementation |
 | :--- | :--- |
-| Structure | HTML5 |
-| Styling and layout | CSS3, Grid, Flexbox, and media queries |
-| Icons | Inline SVG symbols |
-| Typography | Inter through Google Fonts, with Arial and system sans-serif fallbacks |
-| Application logic | Not implemented in this phase |
-| Backend and persistence | Not implemented in this phase |
+| Structure | HTML5 with inline SVG icons |
+| Styling | CSS, Grid, Flexbox, and media queries |
+| Shared theme | `theme.css`, loaded after base and page-specific styles |
+| Icons | Lucide SVG paths, with attribution in `LUCIDE-LICENSE.txt` |
+| Typography | Inter through Google Fonts; Arial and sans-serif fallbacks |
+| Development and build | Vite with three HTML entry points |
+| Application logic and database | Planned |
 
-The dashboard uses CSS for its visual interactions and chart rendering. Vite provides an optional development server with automatic refresh and a production build command; no JavaScript framework is used.
+No JavaScript application framework is used in this phase. Vite and `lucide-static` are development dependencies; the interface itself is static HTML and CSS.
 
-## Run Locally
+## Run locally
 
-### Recommended — Vite development server
+### Recommended: Vite
 
-With Node.js and npm installed, run these commands from the repository directory:
-
-```bash
-npm install
-npm run dev
-```
-
-Open the local URL printed in the terminal. Changes to HTML and CSS refresh automatically. Stop the server with `Ctrl+C`.
-
-Use `npm run build` to generate a production build in `dist/`, and `npm run preview` to preview that build.
-
-
-### Option 1 — Open directly
-
-Clone or download the repository, then open `index.html` in a browser.
+Install a current Node.js LTS release with npm. Clone the repository and enter the folder containing `package.json`:
 
 ```bash
 git clone https://github.com/shah-ahmad/Gym-Tracker.git
 cd Gym-Tracker
+npm install
+npm run dev
 ```
 
-### Option 2 — Use a local server
+If you already have the project, open its **Gym-Tracker** folder in VS Code and run only `npm install` and `npm run dev` in the terminal.
 
-With Python installed, run the following from the repository directory:
+Open the local URL printed by Vite. Use the sidebar to move between Dashboard, Workouts, and Exercises. Saved HTML and CSS changes refresh automatically. Stop the server with `Ctrl+C`.
+
+> If npm reports that it cannot find `package.json`, the terminal is in the wrong folder. Enter the cloned `Gym-Tracker` directory first.
+
+### Build and preview
+
+```bash
+npm run build
+npm run preview
+```
+
+The build writes all three pages and their styles to `dist/`. The preview command serves that production build locally and prints its URL.
+
+### Without npm
+
+Open `index.html` directly in a browser, or use Python from the repository directory:
 
 ```bash
 python -m http.server 8080 --bind 127.0.0.1
 ```
 
-Then visit **[http://127.0.0.1:8080](http://127.0.0.1:8080)**. Stop the server with `Ctrl+C`.
+Visit [http://127.0.0.1:8080](http://127.0.0.1:8080). Google Fonts requires internet access; fallback fonts keep the pages usable offline.
 
-> The Google Fonts typeface requires an internet connection. The page remains usable with fallback fonts when offline.
-
-## Repository Structure
+## Repository structure
 
 ```text
 Gym-Tracker/
-├── index.html     # Dashboard markup, sample content, and SVG icons
-├── styles.css     # Visual styling, hover states, and responsive layouts
-├── README.md      # Project overview and local setup
-└── test.txt       # Initial repository workflow test file
+├── index.html          # Dashboard
+├── workouts.html       # Workout plans
+├── exercises.html      # Exercise library and sample detail view
+├── styles.css          # Base styles and dashboard layout
+├── workouts.css        # Workout page layout
+├── exercises.css       # Exercise page layout
+├── theme.css           # Shared palette, material effects, and compact sizing
+├── vite.config.mjs     # Multi-page production build configuration
+├── package.json        # Development dependencies and npm commands
+├── package-lock.json   # Locked dependency versions
+├── .gitignore          # Excludes node_modules/ and dist/
+├── LUCIDE-LICENSE.txt  # Icon license and attribution
+├── README.md           # Project documentation
+└── test.txt            # Initial Git workflow test file
 ```
 
-## Current Scope
+## Current scope
 
-This phase focuses on translating a dashboard reference into a browser-based interface using foundational web technologies.
+**Implemented:** three linked pages, sample fitness content, responsive layouts, CSS chart rendering, shared visual styling, hover effects, keyboard focus styles, and a multi-page build.
 
-**Included:** dashboard layout, sample content, responsive styling, SVG icons, CSS chart bars, hover effects, and keyboard focus styling.
+**Not yet implemented:** workout creation or recording, exercise search and filtering, editing, live hydration or weight tracking, authentication, persistence, and statistics calculated from user records.
 
-**Planned:** interactive navigation, workout recording, editable hydration and weight entries, authentication, database storage, and statistics calculated from real records.
+All displayed measurements, dates, counts, and session history are fixed examples. Typing into the search field does not filter the list. Action buttons do not create, modify, or save records.
 
-The sample dates, measurements, progress, and session history are fixed presentation content. They do not update automatically or persist user input.
+## Development roadmap
 
-## Development Roadmap
+- [x] Create the dashboard in HTML and CSS.
+- [x] Add Workouts and Exercises pages with navigation links.
+- [x] Apply a consistent teal theme and compact responsive styling.
+- [x] Standardize icons with Lucide.
+- [x] Configure Vite development and multi-page production builds.
+- [ ] Implement search, filters, editing, and workout data entry.
+- [ ] Build the remaining tracking and statistics pages.
+- [ ] Introduce React for application state and reusable components.
+- [ ] Develop FastAPI endpoints and connect PostgreSQL.
+- [ ] Add authentication and user-specific records.
+- [ ] Calculate activity statistics from saved data.
+- [ ] Complete functional, cross-device, and accessibility testing.
 
-- [x] Build the initial dashboard in HTML and CSS.
-- [x] Add responsive layouts and visual interaction states.
-- [ ] Implement navigation and interactive data entry.
-- [ ] Introduce a React frontend for application state and reusable components.
-- [ ] Develop a FastAPI backend for workout and tracking endpoints.
-- [ ] Connect PostgreSQL for persistent user and fitness records.
-- [ ] Add authentication and user-specific dashboards.
-- [ ] Generate statistics from recorded activity.
-- [ ] Validate application behavior and accessibility across devices.
-
-React, FastAPI, and PostgreSQL are the intended future stack; they are not part of the current implementation.
+React, FastAPI, and PostgreSQL are the intended future stack, not current dependencies.
 
 ---
 
 <div align="center">
 
-**GymTracker** · Academic project · Static dashboard prototype
-
-*Small steps every day lead to big results.*
+**GymTracker** · Academic project · Static interface prototype
 
 </div>
