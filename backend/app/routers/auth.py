@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.user import User
-from app.schemas.user import UserCreate, UserResponse
-from app.utils.security import hash_password
+from app.schemas.user import LoginRequest, Token, UserCreate, UserResponse
+from app.utils.security import create_access_token, hash_password, verify_password
 
 # This router groups all authentication endpoints under the /api/auth prefix
 router = APIRouter(
@@ -37,3 +37,21 @@ def register(user_in: UserCreate, db: Session = Depends(get_db)):
     
     # 4. Return safe user data (FastAPI uses UserResponse to strip the password_hash)
     return new_user
+
+
+
+@router.post("/login", response_model=Token)
+def login(credentials: LoginRequest, db: Session = Depends(get_db)):
+    # 1. Find the user by email
+    user = db.query(User).filter(User.email == credentials.email).first()
+
+    # 2. Same error for "no such email" and "wrong password"
+    if user is None or not verify_password(credentials.password, user.password_hash):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    # 3. Create the token and return it
+    return Token(access_token=create_access_token(user.id))
