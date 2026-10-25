@@ -1,0 +1,9 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {initialState,persist,loadState,completeSession,volume,number,weekDates,validDate,today} from './model.js';
+test('session completion snapshots records and totals volume',()=>{const s=initialState();const items=[{name:'Bench press',sets:3,reps:10,weight:40}];s.active={planName:'Test',date:today(),startedAt:1000,items};const done=completeSession(s,items,62000);assert.equal(done.duration,61);assert.equal(volume(done),1200);assert.equal(s.active,null);items[0].weight=90;assert.equal(done.items[0].weight,40);assert.throws(()=>completeSession(s,items));});
+test('empty completion keeps an active session',()=>{const s=initialState();s.active={startedAt:0};assert.throws(()=>completeSession(s,[]));assert.ok(s.active);});
+test('local records round-trip without seeding fake logs',()=>{const s=initialState();assert.equal(s.sessions.length,0);assert.equal(s.water.length,0);let raw;const store={getItem:()=>raw,setItem:(_,v)=>raw=v};s.water.push({amount:250,date:today()});persist(store,s);assert.deepEqual(loadState(store),s);raw='{broken';assert.throws(()=>loadState(store));});
+test('numeric boundaries reject blanks, negatives, infinity and fractional sets',()=>{for(const v of ['',-1,Infinity,'abc'])assert.throws(()=>number(v,'Test',0,10));assert.throws(()=>number(2.5,'Sets',1,10,true));assert.equal(number('3','Sets',1,10,true),3);});
+test('week boundaries honor Monday and Sunday without overlap',()=>{const mon=weekDates(0,1),sun=weekDates(0,0);assert.equal(new Date(mon[0]+'T12:00:00').getDay(),1);assert.equal(new Date(sun[0]+'T12:00:00').getDay(),0);assert.equal(new Set([...mon,...weekDates(-1,1)]).size,14);assert.ok(mon.includes(today()));assert.throws(()=>validDate('2999-01-01'));});
+

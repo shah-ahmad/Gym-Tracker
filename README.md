@@ -2,16 +2,15 @@
 
 # GymTracker
 
-### Your training, in one place.
+### Plan your training. Record your progress.
 
-An academic fitness application prototype for viewing workout plans, exploring exercises, and reviewing daily activity.
+A responsive fitness application with eleven connected pages, working forms, and browser-local storage.
 
-![Status](https://img.shields.io/badge/Status-UI_Prototype-328A83?style=flat-square)
-![HTML5](https://img.shields.io/badge/HTML5-Semantic_Markup-183B45?style=flat-square&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-Responsive_Design-183B45?style=flat-square&logo=css&logoColor=white)
-![Vite](https://img.shields.io/badge/Dev_Tool-Vite-328A83?style=flat-square&logo=vite&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Functional_Local_App-328A83?style=flat-square)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES_Modules-183B45?style=flat-square)
+![Vite](https://img.shields.io/badge/Development-Vite-328A83?style=flat-square)
 
-[Overview](#overview) · [Pages](#pages) · [Run locally](#run-locally) · [Roadmap](#development-roadmap)
+[Features](#features) · [Muscle maps](#exercise-details-and-muscle-maps) · [Run locally](#run-locally) · [Data and limitations](#data-and-limitations) · [Validation](#validation)
 
 </div>
 
@@ -19,25 +18,83 @@ An academic fitness application prototype for viewing workout plans, exploring e
 
 ## Overview
 
-GymTracker explores how a clear interface can bring workout planning and fitness information together. The current deliverable is a **static, responsive HTML and CSS prototype with three linked pages**: Dashboard, Workouts, and Exercises.
+GymTracker is an academic web application for workout planning, session tracking, hydration, body weight, and fitness goals. It uses HTML, CSS, and vanilla JavaScript with Vite for development and builds.
 
-The pages use sample data to demonstrate layout and visual design. Navigation between these three pages works; workout actions, search, filters, and editing controls are presentation-only. There is no backend, authentication, or saved user data yet.
+The original static interface now has working forms and controls. Records persist in the current browser, and the dashboard, goals, history, and statistics share the same data. Four editable starter plans and thirteen exercises are included; session, water, and weight logs start empty.
 
-## Pages
+## Features
 
-| Page | Content | File |
-| :--- | :--- | :--- |
-| **Dashboard** | Daily activity summary, planned workout, hydration, body weight, gym attendance, weekly chart, and recent workouts. | [index.html](index.html) |
-| **Workouts** | Push, pull, leg, and full-body plans with muscle groups and exercise counts. | [workouts.html](workouts.html) |
-| **Exercises** | Sample exercise library, muscle-group labels, and a bench-press detail panel with a torso illustration, equipment, notes, and example repetition ranges. | [exercises.html](exercises.html) |
+| Section | Working behavior |
+| :--- | :--- |
+| **Dashboard** | Current weight, daily hydration, weekly session count, previous-week navigation, recent sessions, and links to tracking pages. |
+| **Gym sessions** | Choose a plan, start a timer, resume after refresh, edit completed sets/reps/load, skip exercises, complete or cancel a session. |
+| **Workout plans** | Create, edit, delete, and start plans; add or remove exercises and configure sets, reps, and load. |
+| **Exercises** | Search, filter, add or edit exercises, and open details with front/back muscle maps, primary and supporting muscles, equipment, and notes. |
+| **Water tracking** | Add and delete intake records, change the daily target, and view live progress. |
+| **Weight tracking** | Record dated measurements and notes, delete records, and view changes and a trend chart. |
+| **Statistics** | Weekly workout counts, training time, volume, and exercise-load progress calculated from saved sessions. |
+| **Workout history** | Browse completed sessions and open their exercise details. |
+| **Fitness goals** | Save workout, hydration, and weight targets; compare them with recorded activity. |
+| **My profile** | Save a display name, optional email, and weight/water unit preferences. |
+| **Settings** | Save theme, density, week start, time format, and in-app reminder preferences; export JSON and reset local data. |
 
-The remaining sidebar sections are placeholders for future development.
+The profile control opens My profile. The notification bell shows current workout and water-goal reminders and the weekly activity summary, according to saved preferences.
+
+## Exercise details and muscle maps
+
+Selecting an exercise updates its detail panel and body illustrations. On smaller screens, the selected detail view scrolls into view automatically.
+
+- **Red:** primary muscles targeted by the exercise.
+- **Peach:** supporting muscles.
+- **Neutral:** other regions of the body.
+
+Both front and back views are shown so posterior muscles, such as the lats and triceps, are visible. These are schematic illustrations; actual emphasis varies with technique and equipment.
+
+The starter library contains these thirteen exercise mappings:
+
+| Exercise | Primary muscles shown |
+| :--- | :--- |
+| Bench press | Pectoralis major |
+| Incline dumbbell press | Upper pectoralis major |
+| Push-up | Pectoralis major |
+| Pull-up | Latissimus dorsi |
+| Lat pulldown | Latissimus dorsi |
+| Barbell row | Lats, rhomboids, middle trapezius |
+| Shoulder press | Anterior and middle deltoids |
+| Lateral raise | Middle deltoids |
+| Biceps curl | Biceps brachii |
+| Triceps pushdown | Triceps brachii |
+| Squat | Quadriceps and gluteus maximus |
+| Leg press | Quadriceps and gluteus maximus |
+| Plank | Abdominal region, representing rectus and transverse abdominis |
+
+Built-in descriptions and muscle mappings are defined in `muscles.js`. Matching uses the exercise name. Custom or renamed exercises without a recognized name use a general map for their selected muscle group. Saved descriptions, equipment, secondary-muscle text, and notes take precedence over the corresponding built-in text when provided; editing those fields does not redraw the anatomical mapping.
+
+## Typical workflow
+
+1. Browse **Exercises** and inspect the target-muscle diagrams.
+2. Create or edit a **Workout plan**, choosing exercises, sets, reps, and load.
+3. Start a **Gym session**, record completed work, then select **Mark complete**.
+4. Review the saved session in **Workout history** and its totals in **Statistics**.
+5. Add water and weight measurements, then check progress against **Fitness goals**.
+
+## Data and limitations
+
+- **Storage:** `localStorage`, under `gymtracker.v1`. Records persist after refresh and are shared by pages on the same browser origin. Other open tabs update when saved data changes.
+- **Origins matter:** different ports or hosts have separate storage. For example, `localhost:5173` and `127.0.0.1:8081` do not share records. Use the same address for everyday use.
+- **No backend yet:** there is no server account, cloud synchronization, sign-in, password change, or password storage. The profile page explains this instead of presenting a nonfunctional password form.
+- **Reminders:** shown inside the app through the notification bell. There are no background, push, or email notifications.
+- **Units:** body weight can display in kg or lb, and water in ml or fl oz. Workout-plan and session loads are explicitly entered in kg; training volume is shown in kg.
+- **Session volume:** sets × reps per set × load. Each exercise row represents equal reps and load across its sets. Body-weight exercises recorded at zero load contribute zero external-load volume.
+- **Dates:** daily and weekly totals follow the device's local calendar and the saved week-start preference.
+- **Export:** Settings downloads a JSON copy of local records. An import interface is not implemented yet. Clearing browser storage or resetting the app removes local records.
+- **Validation:** required fields, numeric bounds, duplicate exercise names, and future measurement/session dates are checked. Destructive actions require confirmation in the interface.
 
 ## Visual design
 
-The interface combines a compact layout with **skeuomorphic details**: raised buttons, inset search fields, textured navigation, and softly shaded panels. A shared theme keeps the three pages visually consistent.
+The compact interface retains skeuomorphic details: raised buttons, inset fields, textured navigation, and softly shaded surfaces. The shared palette is:
 
-| Design token | Color |
+| Token | Color |
 | :--- | :--- |
 | Background | `#F3F8F7` |
 | Surface | `#FFFFFF` |
@@ -45,27 +102,11 @@ The interface combines a compact layout with **skeuomorphic details**: raised bu
 | Accent | `#328A83` |
 | Border | `#D5E7E4` |
 
-Related teal shades distinguish sections and chart bars. The design also uses sentence-case headings, Lucide outline icons, compact navigation, responsive layouts, and subtle CSS transitions. Keyboard focus styles, descriptive chart text, and reduced-motion support are included; a full accessibility audit remains planned.
-
-## Technology
-
-| Layer | Implementation |
-| :--- | :--- |
-| Structure | HTML5 with inline SVG icons |
-| Styling | CSS, Grid, Flexbox, and media queries |
-| Shared theme | `theme.css`, loaded after base and page-specific styles |
-| Icons | Lucide SVG paths, with attribution in `LUCIDE-LICENSE.txt` |
-| Typography | Inter through Google Fonts; Arial and sans-serif fallbacks |
-| Development and build | Vite with three HTML entry points |
-| Application logic and database | Planned |
-
-No JavaScript application framework is used in this phase. Vite and `lucide-static` are development dependencies; the interface itself is static HTML and CSS.
+Related teal shades differentiate charts and sections. Exercise categories have distinct badge and filter colors. Icons use Lucide; typography uses Inter through Google Fonts with local fallbacks. Keyboard focus indicators, native dialogs, form labels, and reduced-motion support are included.
 
 ## Run locally
 
-### Recommended: Vite
-
-Install a current Node.js LTS release with npm. Clone the repository and enter the folder containing `package.json`:
+Install Node.js with npm, then run:
 
 ```bash
 git clone https://github.com/shah-ahmad/Gym-Tracker.git
@@ -74,80 +115,82 @@ npm install
 npm run dev
 ```
 
-If you already have the project, open its **Gym-Tracker** folder in VS Code and run only `npm install` and `npm run dev` in the terminal.
+Open the URL printed in the terminal. If the repository is already cloned, open the **Gym-Tracker** folder in VS Code and run `npm install` and `npm run dev` there.
 
-Open the local URL printed by Vite. Use the sidebar to move between Dashboard, Workouts, and Exercises. Saved HTML and CSS changes refresh automatically. Stop the server with `Ctrl+C`.
+> An npm error saying `package.json` cannot be found means the terminal is in the wrong folder. Enter the cloned `Gym-Tracker` directory first.
 
-> If npm reports that it cannot find `package.json`, the terminal is in the wrong folder. Enter the cloned `Gym-Tracker` directory first.
+Use a local HTTP server rather than opening the HTML files directly: JavaScript modules require an HTTP origin. As an alternative to Vite:
 
-### Build and preview
+```bash
+python -m http.server 8080 --bind 127.0.0.1
+```
+
+Visit [http://127.0.0.1:8080](http://127.0.0.1:8080). Stop either server with `Ctrl+C`. Google Fonts needs an internet connection; the interface uses fallback fonts offline.
+
+### Production build
 
 ```bash
 npm run build
 npm run preview
 ```
 
-The build writes all three pages and their styles to `dist/`. The preview command serves that production build locally and prints its URL.
+Vite builds all eleven HTML entry points and shared assets into `dist/`. The preview command prints the address of the built application.
 
-### Without npm
-
-Open `index.html` directly in a browser, or use Python from the repository directory:
-
-```bash
-python -m http.server 8080 --bind 127.0.0.1
-```
-
-Visit [http://127.0.0.1:8080](http://127.0.0.1:8080). Google Fonts requires internet access; fallback fonts keep the pages usable offline.
-
-## Repository structure
+## Project structure
 
 ```text
 Gym-Tracker/
-├── index.html          # Dashboard
-├── workouts.html       # Workout plans
-├── exercises.html      # Exercise library and sample detail view
-├── styles.css          # Base styles and dashboard layout
-├── workouts.css        # Workout page layout
-├── exercises.css       # Exercise page layout
-├── theme.css           # Shared palette, material effects, and compact sizing
-├── vite.config.mjs     # Multi-page production build configuration
-├── package.json        # Development dependencies and npm commands
-├── package-lock.json   # Locked dependency versions
-├── .gitignore          # Excludes node_modules/ and dist/
-├── LUCIDE-LICENSE.txt  # Icon license and attribution
-├── README.md           # Project documentation
-└── test.txt            # Initial Git workflow test file
+├── index.html          # Dashboard shell
+├── workouts.html       # Workout-plan shell
+├── exercises.html      # Exercise-library shell
+├── gym-sessions.html   # Session shell
+├── water.html          # Hydration shell
+├── weight.html         # Body-weight shell
+├── statistics.html     # Statistics shell
+├── history.html        # Session-history shell
+├── goals.html          # Fitness-goal shell
+├── profile.html        # Profile shell
+├── settings.html       # Settings shell
+├── app.js              # Page rendering, forms, dialogs, and interactions
+├── model.js            # State, persistence, validation, and calculations
+├── muscles.js          # Exercise anatomy mappings and SVG muscle diagrams
+├── model.test.mjs      # Automated model tests
+├── app.css             # Interactive controls and appearance preferences
+├── features.css        # Shared forms, tables, and tracking layouts
+├── theme.css           # Shared color, material, and sizing rules
+├── styles.css          # Base styles
+├── workouts.css        # Workout layout styles
+├── exercises.css       # Exercise layout styles
+├── vite.config.mjs     # Eleven-page build configuration
+├── package.json        # Scripts and dependencies
+├── package-lock.json   # Locked dependencies
+├── LUCIDE-LICENSE.txt  # Icon license
+├── test.txt            # Initial repository workflow test file
+└── README.md
 ```
 
-## Current scope
+## Validation
 
-**Implemented:** three linked pages, sample fitness content, responsive layouts, CSS chart rendering, shared visual styling, hover effects, keyboard focus styles, and a multi-page build.
+```bash
+npm test
+npm run build
+```
 
-**Not yet implemented:** workout creation or recording, exercise search and filtering, editing, live hydration or weight tracking, authentication, persistence, and statistics calculated from user records.
+Model tests cover session snapshots, volume calculations, empty-session rejection, storage round trips, numeric validation, and calendar-week boundaries. Browser checks cover hydration persistence, plan creation, session completion and statistics, exercise search and creation, weight logging, goals, unit conversion, and saved appearance preferences. Exercise selection has also been checked in the browser to confirm that the muscle details and highlighted regions update together.
 
-All displayed measurements, dates, counts, and session history are fixed examples. Typing into the search field does not filter the list. Action buttons do not create, modify, or save records.
+## Next steps
 
-## Development roadmap
+- Add a validated JSON import workflow.
+- Support different reps and loads for individual sets.
+- Add a backend, authentication, and cloud synchronization.
+- Complete broader accessibility and device testing.
 
-- [x] Create the dashboard in HTML and CSS.
-- [x] Add Workouts and Exercises pages with navigation links.
-- [x] Apply a consistent teal theme and compact responsive styling.
-- [x] Standardize icons with Lucide.
-- [x] Configure Vite development and multi-page production builds.
-- [ ] Implement search, filters, editing, and workout data entry.
-- [ ] Build the remaining tracking and statistics pages.
-- [ ] Introduce React for application state and reusable components.
-- [ ] Develop FastAPI endpoints and connect PostgreSQL.
-- [ ] Add authentication and user-specific records.
-- [ ] Calculate activity statistics from saved data.
-- [ ] Complete functional, cross-device, and accessibility testing.
-
-React, FastAPI, and PostgreSQL are the intended future stack, not current dependencies.
+React, FastAPI, and PostgreSQL remain possible future technologies; the current implementation uses vanilla JavaScript and local browser storage.
 
 ---
 
 <div align="center">
 
-**GymTracker** · Academic project · Static interface prototype
+**GymTracker** · Academic project · Local fitness application
 
 </div>

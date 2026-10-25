@@ -1,5 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="GymTracker exercise library static interface prototype."><title>Exercises — GymTracker</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="exercises.css">  <link rel="stylesheet" href="theme.css">
-</head><body class="exercises-page">  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="GymTracker: workouts, fitness logs, and progress stored in your browser."><title>Exercises — GymTracker</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="exercises.css">  <link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="features.css"><link rel="stylesheet" href="app.css"></head><body class="exercises-page">  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
     <symbol id="dumbbell" viewBox="0 0 24 24">
 
   <path d="M17.596 12.768a2 2 0 1 0 2.829-2.829l-1.768-1.767a2 2 0 0 0 2.828-2.829l-2.828-2.828a2 2 0 0 0-2.829 2.828l-1.767-1.768a2 2 0 1 0-2.829 2.829z" />
@@ -71,95 +71,69 @@
   <path d="m19 12-7 7-7-7" />
 </symbol>
   </defs></svg>
-  <aside class="sidebar">
-    <a class="brand" href="#" aria-label="GymTracker home"><svg><use href="#dumbbell"/></svg><span><b>Gym</b>Tracker</span></a>
-    <nav aria-label="Main navigation">
-      <a class="nav-item" href="index.html"><svg><use href="#home"/></svg>Dashboard</a>
-      <a class="nav-item" href="workouts.html"><svg><use href="#dumbbell"/></svg>Workouts</a>
-      <a class="nav-item active" href="exercises.html" aria-current="page"><svg><use href="#dumbbell"/></svg>Exercises</a>
-      <button class="nav-item"><svg><use href="#calendar"/></svg>Gym sessions</button>
-      <button class="nav-item"><svg><use href="#drop"/></svg>Water tracking</button>
-      <button class="nav-item"><svg><use href="#weight"/></svg>Weight tracking</button>
-      <button class="nav-item"><svg><use href="#chart"/></svg>Statistics</button>
-      <div class="nav-divider"></div>
-      <button class="nav-item"><svg><use href="#settings"/></svg>Settings</button>
-      <button class="nav-item"><svg><use href="#logout"/></svg>Logout</button>
-    </nav>
-  </aside>
-<main>    <header class="topbar">
+  <aside class="sidebar"><a class="brand" href="index.html" aria-label="GymTracker home"><svg viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M17.596 12.768a2 2 0 1 0 2.829-2.829l-1.768-1.767a2 2 0 0 0 2.828-2.829l-2.828-2.828a2 2 0 0 0-2.829 2.828l-1.767-1.768a2 2 0 1 0-2.829 2.829z" />
+  <path d="m2.5 21.5 1.4-1.4" />
+  <path d="m20.1 3.9 1.4-1.4" />
+  <path d="M5.343 21.485a2 2 0 1 0 2.829-2.828l1.767 1.768a2 2 0 1 0 2.829-2.829l-6.364-6.364a2 2 0 1 0-2.829 2.829l1.768 1.767a2 2 0 0 0-2.828 2.829z" />
+  <path d="m9.6 14.4 4.8-4.8" />
+</svg>
+<span><b>Gym</b>Tracker</span></a><nav aria-label="Main navigation"><a class="nav-item" href="index.html" aria-label="Dashboard"><svg viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+  <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+</svg>
+<span>Dashboard</span></a><a class="nav-item" href="gym-sessions.html" aria-label="Gym sessions"><svg viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M8 2v3" />
+  <path d="M16 2v3" />
+  <rect x="3" y="3" width="18" height="18" rx="2" />
+  <path d="M3 9h18" />
+</svg>
+<span>Gym sessions</span></a><a class="nav-item" href="workouts.html" aria-label="Workout plans"><svg viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M17.596 12.768a2 2 0 1 0 2.829-2.829l-1.768-1.767a2 2 0 0 0 2.828-2.829l-2.828-2.828a2 2 0 0 0-2.829 2.828l-1.767-1.768a2 2 0 1 0-2.829 2.829z" />
+  <path d="m2.5 21.5 1.4-1.4" />
+  <path d="m20.1 3.9 1.4-1.4" />
+  <path d="M5.343 21.485a2 2 0 1 0 2.829-2.828l1.767 1.768a2 2 0 1 0 2.829-2.829l-6.364-6.364a2 2 0 1 0-2.829 2.829l1.768 1.767a2 2 0 0 0-2.828 2.829z" />
+  <path d="m9.6 14.4 4.8-4.8" />
+</svg>
+<span>Workout plans</span></a><a class="nav-item active" href="exercises.html" aria-label="Exercises" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true">
+  <rect width="7" height="7" x="3" y="3" rx="1" />
+  <rect width="7" height="7" x="14" y="3" rx="1" />
+  <rect width="7" height="7" x="14" y="14" rx="1" />
+  <rect width="7" height="7" x="3" y="14" rx="1" />
+</svg>
+<span>Exercises</span></a><a class="nav-item" href="water.html" aria-label="Water tracking"><svg viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z" />
+</svg>
+<span>Water tracking</span></a><a class="nav-item" href="weight.html" aria-label="Weight tracking"><svg viewBox="0 0 24 24" aria-hidden="true">
+  <circle cx="12" cy="5" r="3" />
+  <path d="M6.5 8a2 2 0 0 0-1.905 1.46L2.1 18.5A2 2 0 0 0 4 21h16a2 2 0 0 0 1.925-2.54L19.4 9.5A2 2 0 0 0 17.48 8Z" />
+</svg>
+<span>Weight tracking</span></a><a class="nav-item" href="statistics.html" aria-label="Statistics"><svg viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M5 21v-6" />
+  <path d="M12 21V3" />
+  <path d="M19 21V9" />
+</svg>
+<span>Statistics</span></a><a class="nav-item" href="history.html" aria-label="Workout history"><svg viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+  <path d="M3 3v5h5" />
+  <path d="M12 7v5l4 2" />
+</svg>
+<span>Workout history</span></a><a class="nav-item" href="goals.html" aria-label="Fitness goals"><svg viewBox="0 0 24 24" aria-hidden="true">
+  <circle cx="12" cy="12" r="10" />
+  <circle cx="12" cy="12" r="6" />
+  <circle cx="12" cy="12" r="2" />
+</svg>
+<span>Fitness goals</span></a><a class="nav-item" href="profile.html" aria-label="My profile"><svg viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+  <circle cx="12" cy="7" r="4" />
+</svg>
+<span>My profile</span></a><a class="nav-item" href="settings.html" aria-label="Settings"><svg viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" />
+  <circle cx="12" cy="12" r="3" />
+</svg>
+<span>Settings</span></a></nav></aside>
+<main><header class="topbar">
       <button class="notification icon-button" aria-label="Notifications"><svg><use href="#bell"/></svg><span></span></button>
       <div class="profile-divider"></div>
       <button class="profile"><span class="avatar">AS</span><span>Ahmad Shah</span><svg><use href="#down"/></svg></button>
-    </header>
-<section class="exercise-heading"><div><h1>Exercises</h1><p>Browse, search and manage exercises to use in your workouts.</p></div><button class="add-exercise"><svg viewBox="0 0 24 24" aria-hidden="true">
-
-  <path d="M5 12h14" />
-  <path d="M12 5v14" />
-</svg> Add exercise</button></section><div class="exercise-layout"><section class="library-panel" aria-label="Exercise library"><label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true">
-
-  <path d="m21 21-4.34-4.34" />
-  <circle cx="11" cy="11" r="8" />
-</svg><input type="search" placeholder="Search exercises..." aria-label="Search exercises (visual prototype)"></label><div class="filters" aria-label="Muscle group filters"><button class="filter chosen">All</button><button class="filter">Chest</button><button class="filter">Back</button><button class="filter">Shoulders</button><button class="filter">Arms</button><button class="filter">Legs</button><button class="filter">Core</button></div><div class="exercise-list"><button class="exercise-row selected"><span>Bench press</span><span class="tag chest">Chest</span><span class="row-arrow"><svg viewBox="0 0 24 24" aria-hidden="true">
-
-  <path d="m9 18 6-6-6-6" />
-</svg></span></button>
-<button class="exercise-row"><span>Incline dumbbell press</span><span class="tag chest">Chest</span><span class="row-arrow"><svg viewBox="0 0 24 24" aria-hidden="true">
-
-  <path d="m9 18 6-6-6-6" />
-</svg></span></button>
-<button class="exercise-row"><span>Push-up</span><span class="tag chest">Chest</span><span class="row-arrow"><svg viewBox="0 0 24 24" aria-hidden="true">
-
-  <path d="m9 18 6-6-6-6" />
-</svg></span></button>
-<button class="exercise-row"><span>Pull-up</span><span class="tag back">Back</span><span class="row-arrow"><svg viewBox="0 0 24 24" aria-hidden="true">
-
-  <path d="m9 18 6-6-6-6" />
-</svg></span></button>
-<button class="exercise-row"><span>Lat pulldown</span><span class="tag back">Back</span><span class="row-arrow"><svg viewBox="0 0 24 24" aria-hidden="true">
-
-  <path d="m9 18 6-6-6-6" />
-</svg></span></button>
-<button class="exercise-row"><span>Barbell row</span><span class="tag back">Back</span><span class="row-arrow"><svg viewBox="0 0 24 24" aria-hidden="true">
-
-  <path d="m9 18 6-6-6-6" />
-</svg></span></button>
-<button class="exercise-row"><span>Shoulder press</span><span class="tag shoulders">Shoulders</span><span class="row-arrow"><svg viewBox="0 0 24 24" aria-hidden="true">
-
-  <path d="m9 18 6-6-6-6" />
-</svg></span></button>
-<button class="exercise-row"><span>Lateral raise</span><span class="tag shoulders">Shoulders</span><span class="row-arrow"><svg viewBox="0 0 24 24" aria-hidden="true">
-
-  <path d="m9 18 6-6-6-6" />
-</svg></span></button>
-<button class="exercise-row"><span>Biceps curl</span><span class="tag arms">Arms</span><span class="row-arrow"><svg viewBox="0 0 24 24" aria-hidden="true">
-
-  <path d="m9 18 6-6-6-6" />
-</svg></span></button>
-<button class="exercise-row"><span>Triceps pushdown</span><span class="tag arms">Arms</span><span class="row-arrow"><svg viewBox="0 0 24 24" aria-hidden="true">
-
-  <path d="m9 18 6-6-6-6" />
-</svg></span></button>
-<button class="exercise-row"><span>Squat</span><span class="tag legs">Legs</span><span class="row-arrow"><svg viewBox="0 0 24 24" aria-hidden="true">
-
-  <path d="m9 18 6-6-6-6" />
-</svg></span></button>
-<button class="exercise-row"><span>Leg press</span><span class="tag legs">Legs</span><span class="row-arrow"><svg viewBox="0 0 24 24" aria-hidden="true">
-
-  <path d="m9 18 6-6-6-6" />
-</svg></span></button>
-<button class="exercise-row"><span>Plank</span><span class="tag core">Core</span><span class="row-arrow"><svg viewBox="0 0 24 24" aria-hidden="true">
-
-  <path d="m9 18 6-6-6-6" />
-</svg></span></button>
-</div></section><article class="exercise-detail"><div class="detail-heading"><div><h2>Bench press</h2><span class="tag chest">Chest</span></div><button class="edit-exercise"><svg viewBox="0 0 24 24" aria-hidden="true">
-
-  <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
-  <path d="m15 5 4 4" />
-</svg> Edit exercise</button></div><p class="exercise-intro">A compound exercise that primarily targets the chest muscles, while also engaging the shoulders and triceps.</p><div class="muscle-overview"><div class="anatomy-panel"><svg class="anatomy" viewBox="0 0 260 300" role="img" aria-label="Front torso illustration highlighting the chest muscles"><g fill="none" stroke="#818b9b" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M112 34c-4-16 0-26 18-26s22 10 18 26l-5 18-13 8-13-8Z M109 22l-5-3 1 15 7 5m38-17 5-3-1 15-7 5M117 51l-3 21-34 13c-22 10-28 23-32 45l-15 39-12 73m122-191 3 21 34 13c22 10 28 23 32 45l15 39 12 73M114 67l16 14 16-14M130 60v23M80 86l21 7m79-7-21 7M50 125c10-15 17-20 29-21M210 125c-10-15-17-20-29-21M78 124l-11 43-18 23-12 52m145-118 11 43 18 23 12 52M85 131l7 38-6 34-12 65m101-137-7 38 6 34 12 65M93 202l16 33 11 29h20l11-29 16-33M130 130v91M106 139q12-5 21 0l-1 17-19-1Zm28 0q12-5 21 0l-1 16-19 1ZM108 160l18 2-1 15-16-2Zm26 2 18-2-1 15-16 2ZM111 180l14 2-1 14-12-3m23-11 14-2-1 13-12 3M111 81l-11 10m49-10 11 10"/><path fill="#ff999f" stroke="#f2777d" d="M125 91c-20-14-35-10-45 6l-10 16 13 20c12 8 29 8 43-1 4-10 3-28-1-41Zm10 0c20-14 35-10 45 6l10 16-13 20c-12 8-29 8-43-1-4-10-3-28 1-41Z"/><path d="m89 76 15 7m67-7-15 7M117 29h7m12 0h7M130 32v12m-7 4h14"/></g></svg></div><dl class="muscle-facts"><div><dt>Primary muscle group</dt><dd><span class="tag chest">Chest</span></dd></div><div><dt>Secondary muscle groups</dt><dd><span class="tag neutral">Shoulders</span><span class="tag neutral">Triceps</span></dd></div><div><dt>Equipment</dt><dd><span class="tag neutral">Barbell</span></dd></div><div><dt>Exercise type</dt><dd><span class="tag neutral">Compound</span></dd></div></dl></div><section class="exercise-notes"><svg viewBox="0 0 24 24" aria-hidden="true">
-
-  <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
-  <path d="M14 2v5a1 1 0 0 0 1 1h5" />
-  <path d="M10 9H8" />
-  <path d="M16 13H8" />
-  <path d="M16 17H8" />
-</svg><div><h3>Notes</h3><p>Keep your back flat, lower the bar to your chest, and push up with control.</p></div></section><section class="rep-section"><h3>Common sets &amp; reps</h3><div class="rep-grid"><div><h4>Strength</h4><strong>3–5 reps</strong><p>3–5 sets</p></div><div><h4>Hypertrophy</h4><strong>8–12 reps</strong><p>3–4 sets</p></div><div><h4>Endurance</h4><strong>15+ reps</strong><p>2–3 sets</p></div></div></section></article></div></main></body></html>
+    </header><p class="loading-message">Loading your records…</p><noscript><p>Enable JavaScript to use GymTracker. Your records are stored locally in this browser.</p></noscript></main><script type="module" src="app.js"></script></body></html>
