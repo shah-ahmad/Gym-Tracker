@@ -15,3 +15,13 @@ class WaterResponse(BaseModel):
     created_at: dt.datetime
 
     model_config = ConfigDict(from_attributes=True)
+
+class WaterToday(BaseModel):
+    date: dt.date
+    total_ml: int
+    entries: list[WaterResponse]
+
+
+class WaterDayTotal(BaseModel):
+    date: dt.date
+    total_ml: int
