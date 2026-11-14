@@ -14,3 +14,26 @@ export function weeklyTrend(sessions,start=1){const thisWeek=countInDates(sessio
 export function monthlyCount(sessions,offset=0,now=new Date()){const d=new Date(now.getFullYear(),now.getMonth()+offset,1),key=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;return sessions.filter(s=>typeof s.date==='string'&&s.date.startsWith(key+'-')).length;}
 export const goalPercent=(current,goal)=>{const g=Number(goal),c=Number(current);return g>0&&Number.isFinite(c)&&c>0?Math.min(100,Math.round(c/g*100)):0;};
 export const recentSessions=(sessions,limit=4)=>[...sessions].sort((a,b)=>b.date.localeCompare(a.date)||(b.startedAt||0)-(a.startedAt||0)).slice(0,limit);
+export const API_BASE='http://127.0.0.1:8000',TOKEN_KEY='gymtracker.token',WATER_GOAL_KEY='gymtracker.waterGoal',DEFAULT_WATER_GOAL=2500,QUICK_ADD_AMOUNTS=[250,500,750];
+export class AuthError extends Error{constructor(message='You are not logged in. Sign in to track water.'){super(message);this.name='AuthError';}}
+const read=(storage,key)=>{try{return storage.getItem(key);}catch{return null;}};
+export const getToken=storage=>read(storage,TOKEN_KEY)||null;
+export function getWaterGoal(storage){const n=Number(read(storage,WATER_GOAL_KEY));return Number.isInteger(n)&&n>=1&&n<=20000?n:DEFAULT_WATER_GOAL;}
+export function setWaterGoal(storage,value){const n=number(value,'Daily water goal',1,20000,true);storage.setItem(WATER_GOAL_KEY,String(n));return n;}
+export async function apiRequest(path,{method='GET',body,token,fetchImpl=globalThis.fetch,base=API_BASE}={}){
+  if(!token)throw new AuthError();
+  let res;
+  try{res=await fetchImpl(base+path,{method,headers:{Authorization:`Bearer ${token}`,...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined});}
+  catch{throw new Error(`Could not reach the server at ${base}. Is the backend running?`);}
+  if(res.status===401||res.status===403)throw new AuthError('Your session has expired. Please sign in again.');
+  if(!res.ok){let detail='';try{const j=await res.json();detail=typeof j.detail==='string'?j.detail:'';}catch{}throw new Error(detail||`Request failed (${res.status}).`);}
+  return res.json();
+}
+export const normalizeEntry=e=>({id:e.id,amount:Number(e.amount_ml)||0,date:e.date,createdAt:e.created_at});
+export function normalizeToday(data){const entries=(data?.entries||[]).map(normalizeEntry).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));return {date:data?.date||today(),total:Number(data?.total_ml)||0,entries};}
+export const normalizeHistory=rows=>(Array.isArray(rows)?rows:[]).map(r=>({date:r.date,total:Number(r.total_ml)||0})).sort((a,b)=>b.date.localeCompare(a.date));
+export const fetchWaterToday=(token,opts={})=>apiRequest('/api/water/today',{...opts,token}).then(normalizeToday);
+export const fetchWaterHistory=(token,days=7,opts={})=>apiRequest(`/api/water/history?days=${days}`,{...opts,token}).then(normalizeHistory);
+export const addWaterEntry=(token,amountMl,opts={})=>apiRequest('/api/water',{...opts,token,method:'POST',body:{amount_ml:number(amountMl,'Water amount',1,5000,true)}}).then(normalizeEntry);
+export async function logWaterAndRefresh(token,amountMl,opts={}){await addWaterEntry(token,amountMl,opts);const [todayData,history]=await Promise.all([fetchWaterToday(token,opts),fetchWaterHistory(token,7,opts)]);return {today:todayData,history};}
+export const formatHistoryDay=(date,now=today())=>{if(date===now)return 'Today';const y=new Date(now+'T12:00:00');y.setDate(y.getDate()-1);if(date===`${y.getFullYear()}-${String(y.getMonth()+1).padStart(2,'0')}-${String(y.getDate()).padStart(2,'0')}`)return 'Yesterday';return new Date(date+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});};

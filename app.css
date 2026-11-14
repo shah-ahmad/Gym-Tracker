@@ -10,3 +10,7 @@ html[data-theme=dark] .muscle-visual{background:#203a40;border-color:#36575e}htm
 @media(max-width:700px){.muscle-visual{padding:12px}.muscle-map-pair{gap:8px}.muscle-legend{font-size:10px;gap:8px}}
 .metric-grid:has(>.metric:nth-child(5)){grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
 .water-bar{display:block;height:10px;margin:4px 0}
+.water-quick{display:flex;gap:12px;flex-wrap:wrap}.water-quick .primary-action{flex:1 1 90px;min-height:48px;font-size:16px;cursor:pointer}.water-quick .primary-action:disabled{opacity:.5;cursor:wait}
+.water-goal-form{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}.water-goal-form .field{flex:1 1 160px}
+.water-history{list-style:none;margin:0;padding:0;display:grid;gap:12px}.water-history li{display:grid;grid-template-columns:120px 100px 1fr;align-items:center;gap:12px;font-size:14px}.water-history progress{height:10px}
+@media(max-width:700px){.water-history li{grid-template-columns:1fr auto}.water-history progress{grid-column:1/-1}}
