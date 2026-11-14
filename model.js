@@ -9,3 +9,36 @@ export function validDate(value){if(!/^\d{4}-\d{2}-\d{2}$/.test(value)||Number.i
 export const volume=session=>session.items.reduce((sum,x)=>sum+x.sets*x.reps*x.weight,0);
 export function weekDates(offset=0,start=1){const d=new Date(today()+'T12:00:00');d.setDate(d.getDate()-((d.getDay()-start+7)%7)+offset*7);return Array.from({length:7},(_,i)=>{const x=new Date(d);x.setDate(x.getDate()+i);return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}-${String(x.getDate()).padStart(2,'0')}`;});}
 export function completeSession(s,items,now=Date.now()){if(!s.active)throw new Error('Start a session first.');if(!items.length)throw new Error('Record at least one completed exercise.');const session={id:uid(),planName:s.active.planName,date:s.active.date,startedAt:s.active.startedAt,duration:Math.max(0,Math.floor((now-s.active.startedAt)/1000)),items:structuredClone(items)};s.sessions.push(session);s.active=null;return session;}
+export const countInDates=(sessions,dates)=>{const set=new Set(dates);return sessions.filter(s=>set.has(s.date)).length;};
+export function weeklyTrend(sessions,start=1){const thisWeek=countInDates(sessions,weekDates(0,start)),lastWeek=countInDates(sessions,weekDates(-1,start)),diff=thisWeek-lastWeek;return {thisWeek,lastWeek,diff,trend:diff>0?'up':diff<0?'down':'same'};}
+export function monthlyCount(sessions,offset=0,now=new Date()){const d=new Date(now.getFullYear(),now.getMonth()+offset,1),key=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;return sessions.filter(s=>typeof s.date==='string'&&s.date.startsWith(key+'-')).length;}
+export const goalPercent=(current,goal)=>{const g=Number(goal),c=Number(current);return g>0&&Number.isFinite(c)&&c>0?Math.min(100,Math.round(c/g*100)):0;};
+export const recentSessions=(sessions,limit=4)=>[...sessions].sort((a,b)=>b.date.localeCompare(a.date)||(b.startedAt||0)-(a.startedAt||0)).slice(0,limit);
+export const API_BASE='http://127.0.0.1:8000',TOKEN_KEY='gymtracker.token',WATER_GOAL_KEY='gymtracker.waterGoal',DEFAULT_WATER_GOAL=2500,QUICK_ADD_AMOUNTS=[250,500,750];
+export class AuthError extends Error{constructor(message='You are not logged in. Sign in to track water.'){super(message);this.name='AuthError';}}
+const read=(storage,key)=>{try{return storage.getItem(key);}catch{return null;}};
+export const getToken=storage=>read(storage,TOKEN_KEY)||null;
+export function getWaterGoal(storage){const n=Number(read(storage,WATER_GOAL_KEY));return Number.isInteger(n)&&n>=1&&n<=20000?n:DEFAULT_WATER_GOAL;}
+export function setWaterGoal(storage,value){const n=number(value,'Daily water goal',1,20000,true);storage.setItem(WATER_GOAL_KEY,String(n));return n;}
+export async function apiRequest(path,{method='GET',body,token,fetchImpl=globalThis.fetch,base=API_BASE}={}){
+  if(!token)throw new AuthError();
+  let res;
+  try{res=await fetchImpl(base+path,{method,headers:{Authorization:`Bearer ${token}`,...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined});}
+  catch{throw new Error(`Could not reach the server at ${base}. Is the backend running?`);}
+  if(res.status===401||res.status===403)throw new AuthError('Your session has expired. Please sign in again.');
+  if(!res.ok){let detail='';try{const j=await res.json();detail=typeof j.detail==='string'?j.detail:'';}catch{}throw new Error(detail||`Request failed (${res.status}).`);}
+  return res.json();
+}
+export const normalizeEntry=e=>({id:e.id,amount:Number(e.amount_ml)||0,date:e.date,createdAt:e.created_at});
+export function normalizeToday(data){const entries=(data?.entries||[]).map(normalizeEntry).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));return {date:data?.date||today(),total:Number(data?.total_ml)||0,entries};}
+export const normalizeHistory=rows=>(Array.isArray(rows)?rows:[]).map(r=>({date:r.date,total:Number(r.total_ml)||0})).sort((a,b)=>b.date.localeCompare(a.date));
+export const fetchWaterToday=(token,opts={})=>apiRequest('/api/water/today',{...opts,token}).then(normalizeToday);
+export const fetchWaterHistory=(token,days=7,opts={})=>apiRequest(`/api/water/history?days=${days}`,{...opts,token}).then(normalizeHistory);
+export const addWaterEntry=(token,amountMl,opts={})=>apiRequest('/api/water',{...opts,token,method:'POST',body:{amount_ml:number(amountMl,'Water amount',1,5000,true)}}).then(normalizeEntry);
+export async function logWaterAndRefresh(token,amountMl,opts={}){await addWaterEntry(token,amountMl,opts);const [todayData,history]=await Promise.all([fetchWaterToday(token,opts),fetchWaterHistory(token,7,opts)]);return {today:todayData,history};}
+export const formatHistoryDay=(date,now=today())=>{if(date===now)return 'Today';const y=new Date(now+'T12:00:00');y.setDate(y.getDate()-1);if(date===`${y.getFullYear()}-${String(y.getMonth()+1).padStart(2,'0')}-${String(y.getDate()).padStart(2,'0')}`)return 'Yesterday';return new Date(date+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});};
+export const normalizeWeightEntry=e=>({id:e.id,weightKg:Number(e.weight_kg)||0,date:e.date});
+export const normalizeWeightHistory=rows=>(Array.isArray(rows)?rows:[]).map(normalizeWeightEntry).sort((a,b)=>b.date.localeCompare(a.date));
+export const fetchWeightHistory=(token,days=30,opts={})=>apiRequest(`/api/weight/history?days=${days}`,{...opts,token}).then(normalizeWeightHistory);
+export const logWeightEntry=(token,weightKg,date,opts={})=>{const body={weight_kg:number(weightKg,'Weight',0.1,500)};if(date)body.date=validDate(date);return apiRequest('/api/weight',{...opts,token,method:'POST',body}).then(normalizeWeightEntry);};
+export async function logWeightAndRefresh(token,weightKg,date,days=30,opts={}){await logWeightEntry(token,weightKg,date,opts);return fetchWeightHistory(token,days,opts);}
