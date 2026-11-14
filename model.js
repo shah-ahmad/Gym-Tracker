@@ -37,3 +37,8 @@ export const fetchWaterHistory=(token,days=7,opts={})=>apiRequest(`/api/water/hi
 export const addWaterEntry=(token,amountMl,opts={})=>apiRequest('/api/water',{...opts,token,method:'POST',body:{amount_ml:number(amountMl,'Water amount',1,5000,true)}}).then(normalizeEntry);
 export async function logWaterAndRefresh(token,amountMl,opts={}){await addWaterEntry(token,amountMl,opts);const [todayData,history]=await Promise.all([fetchWaterToday(token,opts),fetchWaterHistory(token,7,opts)]);return {today:todayData,history};}
 export const formatHistoryDay=(date,now=today())=>{if(date===now)return 'Today';const y=new Date(now+'T12:00:00');y.setDate(y.getDate()-1);if(date===`${y.getFullYear()}-${String(y.getMonth()+1).padStart(2,'0')}-${String(y.getDate()).padStart(2,'0')}`)return 'Yesterday';return new Date(date+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});};
+export const normalizeWeightEntry=e=>({id:e.id,weightKg:Number(e.weight_kg)||0,date:e.date});
+export const normalizeWeightHistory=rows=>(Array.isArray(rows)?rows:[]).map(normalizeWeightEntry).sort((a,b)=>b.date.localeCompare(a.date));
+export const fetchWeightHistory=(token,days=30,opts={})=>apiRequest(`/api/weight/history?days=${days}`,{...opts,token}).then(normalizeWeightHistory);
+export const logWeightEntry=(token,weightKg,date,opts={})=>{const body={weight_kg:number(weightKg,'Weight',0.1,500)};if(date)body.date=validDate(date);return apiRequest('/api/weight',{...opts,token,method:'POST',body}).then(normalizeWeightEntry);};
+export async function logWeightAndRefresh(token,weightKg,date,days=30,opts={}){await logWeightEntry(token,weightKg,date,opts);return fetchWeightHistory(token,days,opts);}
