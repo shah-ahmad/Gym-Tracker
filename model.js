@@ -14,6 +14,12 @@ export function weeklyTrend(sessions,start=1){const thisWeek=countInDates(sessio
 export function monthlyCount(sessions,offset=0,now=new Date()){const d=new Date(now.getFullYear(),now.getMonth()+offset,1),key=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;return sessions.filter(s=>typeof s.date==='string'&&s.date.startsWith(key+'-')).length;}
 export const goalPercent=(current,goal)=>{const g=Number(goal),c=Number(current);return g>0&&Number.isFinite(c)&&c>0?Math.min(100,Math.round(c/g*100)):0;};
 export const recentSessions=(sessions,limit=4)=>[...sessions].sort((a,b)=>b.date.localeCompare(a.date)||(b.startedAt||0)-(a.startedAt||0)).slice(0,limit);
+const sessionList=state=>Array.isArray(state?.sessions)?state.sessions:[];
+export const totalSessions=state=>sessionList(state).length;
+export function averageSessionMinutes(state){const list=sessionList(state);if(!list.length)return 0;const seconds=list.reduce((n,s)=>n+(Number(s.duration)||0),0);return Math.round(seconds/list.length/60*10)/10;}
+export const totalVolume=state=>sessionList(state).reduce((n,s)=>n+(Array.isArray(s.items)?volume(s):0),0);
+export function weeklyWaterAverage(history){if(!Array.isArray(history)||!history.length)return 0;return Math.round(history.reduce((n,h)=>n+(Number(h?.total)||0),0)/history.length);}
+export function weightChange(entries){if(!Array.isArray(entries)||entries.length<2)return null;const latest=Number(entries[0]?.weightKg),oldest=Number(entries[entries.length-1]?.weightKg);if(!Number.isFinite(latest)||!Number.isFinite(oldest))return null;return Math.round((latest-oldest)*10)/10||0;}
 export const API_BASE='http://127.0.0.1:8000',TOKEN_KEY='gymtracker.token',WATER_GOAL_KEY='gymtracker.waterGoal',DEFAULT_WATER_GOAL=2500,QUICK_ADD_AMOUNTS=[250,500,750];
 export class AuthError extends Error{constructor(message='You are not logged in. Sign in to track water.'){super(message);this.name='AuthError';}}
 const read=(storage,key)=>{try{return storage.getItem(key);}catch{return null;}};
