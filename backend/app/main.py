@@ -1,9 +1,15 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.database import engine, Base
-from app.routers import auth, users, water, weight
+from app.database import engine, Base, SessionLocal
+from app import models  # noqa: F401  (registers every table before create_all)
+from app.routers import auth, users, water, weight, exercises
+from app.seed import seed_exercises
 
 Base.metadata.create_all(bind=engine)
+
+# Fill the exercise library on first start (does nothing if already filled)
+with SessionLocal() as db:
+    seed_exercises(db)
 
 app = FastAPI(title="Gym Tracker API")
 
@@ -20,6 +26,7 @@ app.include_router(auth.router)
 app.include_router(users.router)
 app.include_router(water.router)
 app.include_router(weight.router)
+app.include_router(exercises.router)
 
 
 @app.get("/")
