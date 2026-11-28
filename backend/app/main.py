@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
-from app.routers import auth,users
+from app import models  # noqa: F401  (registers every table before create_all)
+from app.routers import auth, users, exercises
 
 Base.metadata.create_all(bind=engine)
 
@@ -18,6 +19,9 @@ app.add_middleware(
 
 app.include_router(auth.router)
 app.include_router(users.router)
+app.include_router(exercises.router)
+
+
 @app.get("/")
 def health_check():
     return {"status": "ok"}
